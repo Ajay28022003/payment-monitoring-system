@@ -1,0 +1,62 @@
+export const mockOrders = [
+  {
+    id: "ORD-2026-001",
+    invoiceNo: "INV-107",
+    invoiceDate: "2026-04-01",
+    customer: "Cholamandalam",
+    partner: "Gabo Enterprises",
+    products: ["Pro-Sales"],
+    grandTotal: 125000,
+    receivedAmount: 115000,
+    dueAmount: 10000,
+    country: "India",
+    nextFollowUp: "2026-04-10",
+    status: "PENDING",
+    employee: "Molina"
+  },
+  {
+    id: "ORD-2026-002",
+    invoiceNo: "2024/04/002",
+    invoiceDate: "2026-04-02",
+    customer: "Purplecube Technologies Pvt Ltd",
+    partner: "Direct",
+    products: ["Pro-Ticket"],
+    grandTotal: 75000,
+    receivedAmount: 75000,
+    dueAmount: 0,
+    country: "India",
+    nextFollowUp: "-",
+    status: "RECEIVED",
+    employee: "Paulo Dybala"
+  },
+  {
+    id: "ORD-2026-003",
+    invoiceNo: "INV-184",
+    invoiceDate: "2026-04-05",
+    customer: "Fiesta Car Rentals & Logistics",
+    partner: "IN4 Solutions PVT LTD",
+    products: ["Pro-People"],
+    grandTotal: 61200,
+    receivedAmount: 61200,
+    dueAmount: 0,
+    country: "Oman",
+    nextFollowUp: "-",
+    status: "RECEIVED",
+    employee: "Sarah Khan"
+  },
+  {
+    id: "ORD-2026-004",
+    invoiceNo: "INV-103",
+    invoiceDate: "2026-04-06",
+    customer: "Muscat Express Hotel",
+    partner: "Direct",
+    products: ["Pro-People", "Pro-Visit"],
+    grandTotal: 3500,
+    receivedAmount: 0,
+    dueAmount: 3500,
+    country: "Oman",
+    nextFollowUp: "2026-04-08",
+    status: "DOUBTFUL",
+    employee: "Molina"
+  }
+];
