@@ -29,7 +29,7 @@ export default function MastersList({
             <Database size={20} />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-slate-900 tracking-tight">{title} Registry</h1>
+            <h1 className="text-2xl font-bold text-slate-900 tracking-tight">{title}</h1>
             <p className="text-sm font-medium text-slate-500 mt-0.5">
               Manage and audit {title.toLowerCase()} records in the system.
             </p>

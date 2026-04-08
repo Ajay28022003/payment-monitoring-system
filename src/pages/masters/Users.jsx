@@ -26,7 +26,7 @@ export default function Users() {
   return (
     <>
       <MastersList 
-        title="System Users" 
+        title="Users" 
         columns={['Full Name', 'Email Address', 'System Role', 'Department']} 
         data={data} 
         onAdd={() => { setEditingItem(null); setIsModalOpen(true); }}
