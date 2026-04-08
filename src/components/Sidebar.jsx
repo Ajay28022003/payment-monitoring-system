@@ -15,11 +15,11 @@ export default function Sidebar({ userRole, onLogout, isCollapsed, setIsCollapse
   const navItems = [
     { name: 'Dashboard', to: '/dashboard', icon: LayoutDashboard, roles: ['admin', 'employee'] },
     { name: 'Orders', to: '/orders', icon: ShoppingCart, roles: ['admin', 'employee'] },
-    { name: 'Follow-ups', to: '/followups', icon: CalendarClock, roles: ['admin', 'employee'] },
+    // { name: 'Follow-ups', to: '/followups', icon: CalendarClock, roles: ['admin', 'employee'] },
   ];
 
   const adminItems = [
-    { name: 'Reports', to: '/reports', icon: BarChart3, roles: ['admin'] },
+    // { name: 'Reports', to: '/reports', icon: BarChart3, roles: ['admin'] },
   ];
 
   const mastersSubItems = [
