@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { 
     Users, TrendingUp, TrendingDown, 
     Activity, DollarSign, Calendar, ArrowRight, Building2, Wallet,
-    PieChart as PieIcon, BarChart3
+    PieChart as PieIcon, BarChart3, ChevronDown
 } from 'lucide-react';
 import { 
     BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, 
@@ -60,15 +60,25 @@ export default function Dashboard() {
     return (
         <div className="max-w-7xl mx-auto p-4 md:p-6 space-y-6">
             
-            {/* Standard Header */}
+            {/* Standard Header - Updated for Overall Context */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-5">
                 <div>
-                    <h1 className="text-2xl font-bold text-slate-900">Dashboard</h1>
-                    <p className="text-sm font-medium text-slate-500">Analytics and metric overview for April 2026.</p>
+                    <h1 className="text-2xl font-bold text-slate-900">Dashboard Overview</h1>
+                    {/* Changed from April 2026 to a Year-to-Date / Overall description */}
+                    <p className="text-sm font-medium text-slate-500">Consolidated financial and operational metrics (Year-to-Date).</p>
                 </div>
-                <div className="flex items-center gap-2 px-3 py-1.5 bg-white border border-slate-300 rounded-md text-sm font-bold text-slate-700 shadow-sm">
-                    <Calendar size={16} className="text-slate-500" />
-                    <span>April 2026</span>
+                
+                {/* Upgraded Date Selector */}
+                <div className="relative group">
+                    <div className="flex items-center gap-2 px-3 py-1.5 bg-white border border-slate-300 rounded-md text-sm font-bold text-slate-700 shadow-sm cursor-pointer hover:bg-slate-50 transition-colors">
+                        <Calendar size={16} className="text-slate-500" />
+                        <select className="appearance-none bg-transparent outline-none cursor-pointer pr-4">
+                            <option>FY 2026 (YTD)</option>
+                            <option>FY 2025</option>
+                            <option>All Time</option>
+                        </select>
+                        <ChevronDown size={14} className="text-slate-500 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                    </div>
                 </div>
             </div>
 
