@@ -124,16 +124,16 @@ export default function ViewOrderModal({ isOpen, onClose, order }) {
                 </h3>
                 
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 pt-2">
-                    <DetailBlock label="Grand Total" value={`AED ${(order.grandTotal || 0).toLocaleString()}`} />
+                    <DetailBlock label="Grand Total" value={`OMR ${(order.grandTotal || 0).toLocaleString()}`} />
                     <DetailBlock 
                         label="Received Amount" 
-                        value={`AED ${parseFloat((order.grandTotal || 0) - (order.dueAmount || 0)).toLocaleString()}`} 
+                        value={`OMR ${parseFloat((order.grandTotal || 0) - (order.dueAmount || 0)).toLocaleString()}`} 
                     />
                     
                     <div className="col-span-2 sm:col-span-1 bg-rose-50 p-3 rounded-lg border border-rose-200">
                         <p className="text-xs font-bold text-rose-600 uppercase tracking-wide mb-1">Balance Due</p>
                         <p className="text-xl font-bold text-rose-700 tabular-nums tracking-tight">
-                            AED {(order.dueAmount || 0).toLocaleString()}
+                            OMR {(order.dueAmount || 0).toLocaleString()}
                         </p>
                     </div>
                 </div>

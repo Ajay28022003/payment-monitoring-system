@@ -123,7 +123,7 @@ export default function MasterModal({ isOpen, onClose, type, onSave, editData })
                         <>
                             <InputField label="Product Code" icon={Hash} value={formData.code} onChange={v => setFormData({ ...formData, code: v })} />
                             <InputField label="Product Name" icon={Package} value={formData.name} onChange={v => setFormData({ ...formData, name: v })} />
-                            <InputField label="Standard Price (AED)" icon={DollarSign} value={formData.price} onChange={v => setFormData({ ...formData, price: v })} type="number" />
+                            <InputField label="Standard Price (OMR)" icon={DollarSign} value={formData.price} onChange={v => setFormData({ ...formData, price: v })} type="number" />
                         </>
                     )}
 

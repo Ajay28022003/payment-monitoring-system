@@ -293,11 +293,11 @@ export default function OrderModal({ isOpen, onClose, userRole, onSave, onUpdate
               <div className="bg-slate-800 rounded-xl p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-md">
                  <div>
                     <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Grand Total (Auto)</p>
-                    <p className="text-2xl font-bold text-white tabular-nums tracking-tight">AED {grandTotal.toLocaleString()}</p>
+                    <p className="text-2xl font-bold text-white tabular-nums tracking-tight">OMR {grandTotal.toLocaleString()}</p>
                  </div>
                  <div className="bg-rose-500/10 border border-rose-500/20 px-4 py-2 rounded-lg md:text-right">
                     <p className="text-xs font-bold text-rose-300 uppercase tracking-widest mb-1">Total Due Balance</p>
-                    <p className="text-xl font-bold text-rose-400 tabular-nums tracking-tight">AED {dueAmount.toLocaleString()}</p>
+                    <p className="text-xl font-bold text-rose-400 tabular-nums tracking-tight">OMR {dueAmount.toLocaleString()}</p>
                  </div>
               </div>
             </section>

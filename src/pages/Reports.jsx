@@ -127,7 +127,7 @@ export default function Reports() {
         <div className="bg-white p-5 rounded-xl border border-gray-200 shadow-sm flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-500 mb-1">Cumulative Value</p>
-              <p className="text-2xl font-bold text-gray-900">AED {metrics.cumulative.toLocaleString()}</p>
+              <p className="text-2xl font-bold text-gray-900">OMR {metrics.cumulative.toLocaleString()}</p>
             </div>
             <div className="p-3 bg-indigo-50 rounded-lg text-indigo-600">
                <BarChart3 size={24} />
@@ -136,7 +136,7 @@ export default function Reports() {
         <div className="bg-white p-5 rounded-xl border border-gray-200 shadow-sm flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-500 mb-1">Outstanding Debt</p>
-              <p className="text-2xl font-bold text-gray-900">AED {metrics.outstanding.toLocaleString()}</p>
+              <p className="text-2xl font-bold text-gray-900">OMR {metrics.outstanding.toLocaleString()}</p>
             </div>
             <div className="p-3 bg-rose-50 rounded-lg text-rose-600">
                <Info size={24} />

@@ -7,10 +7,10 @@ export const mockPartners = [
 ];
 
 export const mockProducts = [
-  { code: 'PRD-01', name: 'Pro-Sales', category: 'CRM', price: 'AED 125,000' },
-  { code: 'PRD-02', name: 'Pro-Ticket', category: 'Support', price: 'AED 75,000' },
-  { code: 'PRD-03', name: 'Pro-People', category: 'HRMS', price: 'AED 61,200' },
-  { code: 'PRD-04', name: 'Pro-Visit', category: 'Facility', price: 'AED 3,500' },
+  { code: 'PRD-01', name: 'Pro-Sales', category: 'CRM', price: 'OMR 125,000' },
+  { code: 'PRD-02', name: 'Pro-Ticket', category: 'Support', price: 'OMR 75,000' },
+  { code: 'PRD-03', name: 'Pro-People', category: 'HRMS', price: 'OMR 61,200' },
+  { code: 'PRD-04', name: 'Pro-Visit', category: 'Facility', price: 'OMR 3,500' },
 ];
 
 export const mockUsers = [
