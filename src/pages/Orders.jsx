@@ -17,7 +17,7 @@ export default function Orders({ userRole }) {
     const [editingOrder, setEditingOrder] = useState(null);
     const [viewingOrder, setViewingOrder] = useState(null);
     
-    // URL Search Params
+    // URL Search Params (Dashboard links)
     const [searchTerm, setSearchTerm] = useState('');
     const [searchParams, setSearchParams] = useSearchParams();
     const activeDashboardFilter = searchParams.get('filter');
@@ -54,6 +54,7 @@ export default function Orders({ userRole }) {
     // Unified Filter Logic
     const filteredOrders = useMemo(() => {
         return ordersData.filter(order => {
+            // 1. Quick Search
             const term = searchTerm.toLowerCase();
             const matchesSearch = (
                 (order.invoiceNo || '').toLowerCase().includes(term) ||
@@ -61,6 +62,7 @@ export default function Orders({ userRole }) {
                 (order.employee || '').toLowerCase().includes(term)
             );
 
+            // 2. Dashboard URL Filters
             let matchesDashboard = true;
             const isSales = order.orderType === 'Sales';
             const isPurchase = order.orderType === 'Purchase';
@@ -79,6 +81,7 @@ export default function Orders({ userRole }) {
                 }
             }
 
+            // 3. Advanced Report Filters
             const f = appliedFilters;
             if (f.dateFrom && order.invoiceDate < f.dateFrom) return false;
             if (f.dateTo && order.invoiceDate > f.dateTo) return false;
@@ -127,18 +130,18 @@ export default function Orders({ userRole }) {
         if (currentStatus === 'RECEIVED') style = 'bg-emerald-50 text-emerald-800 border-emerald-200';
         if (currentStatus === 'PENDING') style = 'bg-amber-50 text-amber-800 border-amber-200';
         if (currentStatus === 'DOUBTFUL') style = 'bg-rose-50 text-rose-800 border-rose-200';
+        if (currentStatus === 'CANCELLED') style = 'bg-slate-100 text-slate-500 border-slate-200';
 
         return <span className={`inline-flex items-center px-2.5 py-1 rounded-md text-xs font-bold border ${style}`}>{currentStatus}</span>;
     };
 
     return (
         <div className="max-w-7xl mx-auto p-4 md:p-6 space-y-6">
-            {/* Changed max-w-[1600px] to max-w-7xl to match the Dashboard perfectly */}
 
             {/* Header & Actions */}
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-4 border-b border-slate-200">
                 <div>
-                    <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Orders</h1>
+                    <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Orders & Reports</h1>
                     <p className="text-sm font-medium text-slate-500 mt-1">Manage records, filter data, and generate financial reports.</p>
                 </div>
                 <div className="flex items-center gap-3">
@@ -155,22 +158,22 @@ export default function Orders({ userRole }) {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
                     <div>
-                        <p className="text-sm font-semibold text-slate-500 mb-1">Total Records</p>
+                        <p className="text-sm font-semibold text-slate-500 mb-1">Filtered Records</p>
                         <p className="text-2xl font-bold text-slate-900 tracking-tight">{metrics.total}</p>
                     </div>
                     <div className="p-3 bg-slate-50 border border-slate-100 rounded-xl text-slate-400"><Database size={24} /></div>
                 </div>
                 <div className="bg-indigo-50/50 p-6 rounded-xl border border-indigo-100 shadow-sm flex items-center justify-between">
                     <div>
-                        <p className="text-sm font-semibold text-indigo-600 mb-1">Total Sales</p>
-                        <p className="text-2xl font-bold text-indigo-900 tracking-tight">OMR {metrics.totalSales.toLocaleString()}</p>
+                        <p className="text-sm font-semibold text-indigo-600 mb-1">Filtered Sales Volume</p>
+                        <p className="text-2xl font-bold text-indigo-900 tracking-tight">AED {metrics.totalSales.toLocaleString()}</p>
                     </div>
                     <div className="p-3 bg-white border border-indigo-100 rounded-xl text-indigo-500"><BarChart3 size={24} /></div>
                 </div>
                 <div className="bg-rose-50/50 p-6 rounded-xl border border-rose-100 shadow-sm flex items-center justify-between">
                     <div>
-                        <p className="text-sm font-semibold text-rose-600 mb-1">Total Due</p>
-                        <p className="text-2xl font-bold text-rose-900 tracking-tight">OMR {metrics.totalOutstanding.toLocaleString()}</p>
+                        <p className="text-sm font-semibold text-rose-600 mb-1">Filtered Outstanding</p>
+                        <p className="text-2xl font-bold text-rose-900 tracking-tight">AED {metrics.totalOutstanding.toLocaleString()}</p>
                     </div>
                     <div className="p-3 bg-white border border-rose-100 rounded-xl text-rose-500"><Info size={24} /></div>
                 </div>
@@ -202,7 +205,7 @@ export default function Orders({ userRole }) {
                                 : 'bg-white border-slate-300 text-slate-700 hover:bg-slate-50'
                             }`}
                         >
-                            <SlidersHorizontal size={18} /> Filters
+                            <SlidersHorizontal size={18} /> Report Filters
                             {activeFilterCount > 0 && <span className="bg-indigo-600 text-white px-2 rounded-md text-xs py-0.5">{activeFilterCount}</span>}
                         </button>
 
@@ -224,15 +227,27 @@ export default function Orders({ userRole }) {
                 {/* Expanded Advanced Filters */}
                 {showFilters && (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-4 border-t border-slate-200 animate-in slide-in-from-top-2 duration-200">
-                        {/* Dates & Status */}
+                        {/* Dates & Status - FIXED ALIGNMENT */}
                         <div className="space-y-4">
                             <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Timeline & Status</p>
-                            <div className="flex items-center gap-2 bg-white border border-slate-300 rounded-lg px-3 py-2">
-                                <Calendar size={16} className="text-slate-400 shrink-0" />
-                                <input type="date" value={draftFilters.dateFrom} onChange={e => setDraftFilters({...draftFilters, dateFrom: e.target.value})} className="bg-transparent text-sm font-semibold text-slate-700 w-full outline-none" />
-                                <ArrowRight size={14} className="text-slate-400 shrink-0" />
-                                <input type="date" value={draftFilters.dateTo} onChange={e => setDraftFilters({...draftFilters, dateTo: e.target.value})} className="bg-transparent text-sm font-semibold text-slate-700 w-full outline-none" />
+                            
+                            <div className="flex gap-2">
+                                <input 
+                                    type="date" 
+                                    title="Start Date"
+                                    value={draftFilters.dateFrom} 
+                                    onChange={e => setDraftFilters({...draftFilters, dateFrom: e.target.value})} 
+                                    className="w-full px-1 py-1 bg-white border border-slate-300 rounded-lg text-sm font-semibold focus:ring-2 focus:ring-indigo-500 outline-none" 
+                                />
+                                <input 
+                                    type="date" 
+                                    title="End Date"
+                                    value={draftFilters.dateTo} 
+                                    onChange={e => setDraftFilters({...draftFilters, dateTo: e.target.value})} 
+                                    className="w-full px-1 py-1 bg-white border border-slate-300 rounded-lg text-sm font-semibold focus:ring-2 focus:ring-indigo-500 outline-none" 
+                                />
                             </div>
+
                             <select value={draftFilters.orderType} onChange={e => setDraftFilters({...draftFilters, orderType: e.target.value})} className="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-sm font-semibold focus:ring-2 focus:ring-indigo-500 outline-none">
                                 <option value="">All Record Types</option>
                                 <option value="Sales">Sales Orders</option>
@@ -262,12 +277,12 @@ export default function Orders({ userRole }) {
                         <div className="space-y-4">
                             <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Financial Bounds</p>
                             <div className="flex gap-2">
-                                <input type="number" placeholder="Min Total" value={draftFilters.minTotal} onChange={e => setDraftFilters({...draftFilters, minTotal: e.target.value})} className="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-sm font-semibold outline-none" />
-                                <input type="number" placeholder="Max Total" value={draftFilters.maxTotal} onChange={e => setDraftFilters({...draftFilters, maxTotal: e.target.value})} className="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-sm font-semibold outline-none" />
+                                <input type="number" placeholder="Min Total" value={draftFilters.minTotal} onChange={e => setDraftFilters({...draftFilters, minTotal: e.target.value})} className="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-sm font-semibold focus:ring-2 focus:ring-indigo-500 outline-none" />
+                                <input type="number" placeholder="Max Total" value={draftFilters.maxTotal} onChange={e => setDraftFilters({...draftFilters, maxTotal: e.target.value})} className="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-sm font-semibold focus:ring-2 focus:ring-indigo-500 outline-none" />
                             </div>
                             <div className="flex gap-2">
-                                <input type="number" placeholder="Min Due" value={draftFilters.minDue} onChange={e => setDraftFilters({...draftFilters, minDue: e.target.value})} className="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-sm font-semibold outline-none" />
-                                <input type="number" placeholder="Max Due" value={draftFilters.maxDue} onChange={e => setDraftFilters({...draftFilters, maxDue: e.target.value})} className="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-sm font-semibold outline-none" />
+                                <input type="number" placeholder="Min Due" value={draftFilters.minDue} onChange={e => setDraftFilters({...draftFilters, minDue: e.target.value})} className="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-sm font-semibold focus:ring-2 focus:ring-indigo-500 outline-none" />
+                                <input type="number" placeholder="Max Due" value={draftFilters.maxDue} onChange={e => setDraftFilters({...draftFilters, maxDue: e.target.value})} className="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-sm font-semibold focus:ring-2 focus:ring-indigo-500 outline-none" />
                             </div>
                             <select value={draftFilters.product} onChange={e => setDraftFilters({...draftFilters, product: e.target.value})} className="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-sm font-semibold focus:ring-2 focus:ring-indigo-500 outline-none">
                                 <option value="">All Products</option>
