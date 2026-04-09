@@ -158,21 +158,21 @@ export default function Orders({ userRole }) {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
                     <div>
-                        <p className="text-sm font-semibold text-slate-500 mb-1">Filtered Records</p>
+                        <p className="text-sm font-semibold text-slate-500 mb-1">Total Records</p>
                         <p className="text-2xl font-bold text-slate-900 tracking-tight">{metrics.total}</p>
                     </div>
                     <div className="p-3 bg-slate-50 border border-slate-100 rounded-xl text-slate-400"><Database size={24} /></div>
                 </div>
                 <div className="bg-indigo-50/50 p-6 rounded-xl border border-indigo-100 shadow-sm flex items-center justify-between">
                     <div>
-                        <p className="text-sm font-semibold text-indigo-600 mb-1">Filtered Sales Volume</p>
+                        <p className="text-sm font-semibold text-indigo-600 mb-1">Total Sales</p>
                         <p className="text-2xl font-bold text-indigo-900 tracking-tight">AED {metrics.totalSales.toLocaleString()}</p>
                     </div>
                     <div className="p-3 bg-white border border-indigo-100 rounded-xl text-indigo-500"><BarChart3 size={24} /></div>
                 </div>
                 <div className="bg-rose-50/50 p-6 rounded-xl border border-rose-100 shadow-sm flex items-center justify-between">
                     <div>
-                        <p className="text-sm font-semibold text-rose-600 mb-1">Filtered Outstanding</p>
+                        <p className="text-sm font-semibold text-rose-600 mb-1">Total Due</p>
                         <p className="text-2xl font-bold text-rose-900 tracking-tight">AED {metrics.totalOutstanding.toLocaleString()}</p>
                     </div>
                     <div className="p-3 bg-white border border-rose-100 rounded-xl text-rose-500"><Info size={24} /></div>
