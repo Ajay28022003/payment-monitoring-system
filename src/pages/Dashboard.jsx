@@ -70,14 +70,14 @@ export default function Dashboard() {
                     <h1 className="text-2xl font-bold text-slate-900 tracking-tight flex items-center gap-2">
                         Dashboard Overview <Sparkles size={20} className="text-indigo-500" />
                     </h1>
-                    <p className="text-sm font-medium text-slate-500 mt-1">Consolidated financial and operational metrics (Year-to-Date).</p>
+                    <p className="text-sm font-medium text-slate-500 mt-1">Consolidated financial and operational metrics.</p>
                 </div>
                 
                 <div className="relative group">
                     <div className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm font-bold text-slate-700 shadow-sm cursor-pointer hover:border-slate-300 transition-colors">
                         <Calendar size={16} className="text-slate-400" />
                         <select className="appearance-none bg-transparent outline-none cursor-pointer pr-4">
-                            <option>FY 2026 (YTD)</option>
+                            <option>FY 2026 </option>
                             <option>FY 2025</option>
                             <option>All Time</option>
                         </select>
@@ -118,9 +118,9 @@ export default function Dashboard() {
                     </div>
                     <div className="relative z-10">
                         <p className="text-4xl font-black text-white tracking-tight">{dashboardData.sales.find(s => s.title.includes('Overall')).value}</p>
-                        <p className="text-sm font-medium text-indigo-200 mt-2 flex items-center gap-1">
+                        {/* <p className="text-sm font-medium text-indigo-200 mt-2 flex items-center gap-1">
                             <TrendingUp size={14} className="text-emerald-400" /> +12.5% from last month
-                        </p>
+                        </p> */}
                     </div>
                 </div>
 
@@ -134,7 +134,7 @@ export default function Dashboard() {
                     </div>
                     <div className="relative z-10">
                         <p className="text-4xl font-black text-slate-900 tracking-tight">{dashboardData.purchases.find(p => p.title.includes('Overall')).value}</p>
-                        <p className="text-sm font-medium text-slate-400 mt-2">Awaiting vendor clearance</p>
+                        {/* <p className="text-sm font-medium text-slate-400 mt-2">Awaiting vendor clearance</p> */}
                     </div>
                 </div>
             </div>
